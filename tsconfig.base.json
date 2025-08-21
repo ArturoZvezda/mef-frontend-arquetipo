@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@mef-frontend-arquetipo/adapters": ["adapters/src/index.ts"],
+      "@mef-frontend-arquetipo/application": ["application/src/index.ts"],
+      "@mef-frontend-arquetipo/domain": ["domain/src/index.ts"],
+      "@mef-frontend-arquetipo/shared": ["shared/src/index.ts"],
+      "@mef-frontend-arquetipo/ui": ["ui/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
