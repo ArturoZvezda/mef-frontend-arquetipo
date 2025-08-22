@@ -1,6 +1,17 @@
 import { User, Product } from '@mef-frontend-arquetipo/domain';
 
 /**
+ * Estructura de una notificación genérica
+ */
+export interface NotificationData {
+  type: 'email' | 'sms' | 'push' | 'system';
+  recipient: string;
+  subject: string;
+  content: string;
+  metadata?: Record<string, any>;
+}
+
+/**
  * Puerto para servicio de notificaciones
  * Implementado por adapters que pueden ser email, SMS, push notifications, etc.
  */
@@ -39,12 +50,19 @@ export interface NotificationPort {
   sendLowStockAlert(product: Product, currentStock: number, threshold: number): Promise<void>;
 
   /**
-   * Enviar notificación genérica
+   * Enviar notificación genérica (método principal)
+   * @param notification - Datos de la notificación
+   * @returns Promise que se resuelve cuando se envía
+   */
+  send(notification: NotificationData): Promise<void>;
+
+  /**
+   * Método simple para enviar notificaciones (backward compatibility)
    * @param recipient - Destinatario (email o teléfono)
    * @param subject - Asunto de la notificación
    * @param message - Contenido del mensaje
    * @param type - Tipo de notificación ('email' | 'sms' | 'push')
    * @returns Promise que se resuelve cuando se envía
    */
-  send(recipient: string, subject: string, message: string, type: 'email' | 'sms' | 'push'): Promise<void>;
+  sendSimple(recipient: string, subject: string, message: string, type: 'email' | 'sms' | 'push'): Promise<void>;
 }

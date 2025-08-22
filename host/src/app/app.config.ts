@@ -18,6 +18,27 @@ import {
   FormStateService
 } from '@mef-frontend-arquetipo/shared';
 
+// Application Layer - Event Handlers and Ports
+import {
+  EventHandlerRegistryService,
+  UserCreatedHandler,
+  ProductReservedHandler,
+  EventBusPort
+} from '@mef-frontend-arquetipo/application';
+
+// Infrastructure Layer - Adapters
+import {
+  RxjsEventBusAdapter,
+  ConsoleNotificationAdapter,
+  ConsoleLoggingAdapter
+} from '@mef-frontend-arquetipo/adapters';
+
+// Application Layer - Ports (for DI)
+import {
+  NotificationPort,
+  LoggingPort
+} from '@mef-frontend-arquetipo/application';
+
 import { routes } from './app.routes';
 
 /**
@@ -64,5 +85,15 @@ export const appConfig: ApplicationConfig = {
     NotificationService,
     NavigationStateService,
     FormStateService,
+
+    // 🔧 INFRASTRUCTURE LAYER - Adapters
+    { provide: EventBusPort, useClass: RxjsEventBusAdapter },
+    { provide: NotificationPort, useClass: ConsoleNotificationAdapter },
+    { provide: LoggingPort, useClass: ConsoleLoggingAdapter },
+
+    // 📡 APPLICATION LAYER - Event Handlers
+    EventHandlerRegistryService,
+    UserCreatedHandler,
+    ProductReservedHandler,
   ],
 };

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User, Product } from '@mef-frontend-arquetipo/domain';
-import { NotificationPort } from '@mef-frontend-arquetipo/application';
+import { NotificationPort, NotificationData } from '@mef-frontend-arquetipo/application';
 
 /**
  * Implementación de notificaciones para consola (desarrollo)
@@ -90,16 +90,26 @@ export class ConsoleNotificationAdapter implements NotificationPort {
     await this.delay(100);
   }
 
-  async send(recipient: string, subject: string, message: string, type: 'email' | 'sms' | 'push'): Promise<void> {
-    console.log(`📬 GENERIC ${type.toUpperCase()} NOTIFICATION`, {
-      to: recipient,
-      subject,
-      message,
-      type,
+  async send(notification: NotificationData): Promise<void> {
+    console.log(`📬 GENERIC ${notification.type.toUpperCase()} NOTIFICATION`, {
+      to: notification.recipient,
+      subject: notification.subject,
+      content: notification.content,
+      type: notification.type,
+      metadata: notification.metadata,
       timestamp: new Date().toISOString()
     });
 
     await this.delay(100);
+  }
+
+  async sendSimple(recipient: string, subject: string, message: string, type: 'email' | 'sms' | 'push'): Promise<void> {
+    await this.send({
+      type,
+      recipient,
+      subject,
+      content: message
+    });
   }
 
   /**
