@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { ProductReservedEvent } from '../ports/event-bus.port';
 import { EventHandler } from './event-handler.interface';
-import { NotificationPort } from '../ports/notification.port';
-import { LoggingPort } from '../ports/logging.port';
+import { NOTIFICATION_TOKEN, LOGGING_TOKEN } from '../tokens/injection-tokens';
+import type { NotificationPort } from '../ports/notification.port';
+import type { LoggingPort } from '../ports/logging.port';
 
 /**
  * Manejador de eventos para cuando se reserva stock de producto
@@ -15,8 +16,8 @@ export class ProductReservedHandler implements EventHandler<ProductReservedEvent
   readonly eventType = 'PRODUCT_RESERVED';
 
   constructor(
-    private notificationService: NotificationPort,
-    private logger: LoggingPort
+    @Inject(NOTIFICATION_TOKEN) private notificationService: NotificationPort,
+    @Inject(LOGGING_TOKEN) private logger: LoggingPort
   ) {}
 
   async handle(event: ProductReservedEvent): Promise<void> {
@@ -53,12 +54,13 @@ export class ProductReservedHandler implements EventHandler<ProductReservedEvent
       });
 
     } catch (error) {
-      this.logger.error(`❌ Error procesando reserva de producto: ${error}`, {
+      const metadata = {
         productId,
         quantity,
-        userId,
-        error: error instanceof Error ? error.message : String(error)
-      });
+        userId
+      };
+      const errorObj = error instanceof Error ? error : new Error(String(error));
+      this.logger.error(`❌ Error procesando reserva de producto`, errorObj, metadata);
 
       // En producción: implementar retry, compensación, etc.
       throw error;

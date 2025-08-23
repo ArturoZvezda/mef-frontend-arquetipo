@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { EventBusPort } from '../ports/event-bus.port';
 import { EventHandler } from '../handlers/event-handler.interface';
 import { UserCreatedHandler } from '../handlers/user-created.handler';
 import { ProductReservedHandler } from '../handlers/product-reserved.handler';
-import { LoggingPort } from '../ports/logging.port';
+import { EVENT_BUS_TOKEN, LOGGING_TOKEN } from '../tokens/injection-tokens';
+import { DomainEvent } from '../ports/event-bus.port';
 
 /**
  * Servicio que registra automáticamente todos los Event Handlers
@@ -13,9 +13,9 @@ import { LoggingPort } from '../ports/logging.port';
   providedIn: 'root'
 })
 export class EventHandlerRegistryService {
-  private eventBus = inject(EventBusPort);
-  private logger = inject(LoggingPort);
-  private handlers: EventHandler<any>[] = [];
+  private eventBus = inject(EVENT_BUS_TOKEN);
+  private logger = inject(LOGGING_TOKEN);
+  private handlers: EventHandler<DomainEvent>[] = [];
   private registeredHandlers = new Set<string>();
 
   constructor(
@@ -48,7 +48,7 @@ export class EventHandlerRegistryService {
   /**
    * Registra un handler específico con el event bus
    */
-  private registerHandler<T>(handler: EventHandler<T>): void {
+  private registerHandler<T extends DomainEvent>(handler: EventHandler<T>): void {
     if (this.registeredHandlers.has(handler.eventType)) {
       this.logger.warn(`⚠️ Handler para ${handler.eventType} ya está registrado`);
       return;
@@ -63,14 +63,16 @@ export class EventHandlerRegistryService {
             handlerName: handler.constructor.name
           });
 
-          await handler.handle(event);
+          await handler.handle(event as T);
 
           this.logger.info(`✅ Handler ${handler.constructor.name} ejecutado exitosamente`);
         } catch (error) {
-          this.logger.error(`❌ Error en handler ${handler.constructor.name}:`, {
+          const metadata = {
             eventType: handler.eventType,
-            error: error instanceof Error ? error.message : String(error)
-          });
+            handlerName: handler.constructor.name
+          };
+          const errorObj = error instanceof Error ? error : new Error(String(error));
+          this.logger.error(`❌ Error en handler ${handler.constructor.name}`, errorObj, metadata);
           
           // En producción: enviar a sistema de monitoring/alertas
           throw error;

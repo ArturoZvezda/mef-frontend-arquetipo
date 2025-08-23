@@ -4,3 +4,4 @@ export * from './lib/use-cases';
 export * from './lib/services';
 export * from './lib/dtos';
 export * from './lib/handlers';
+export * from './lib/tokens';

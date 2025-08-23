@@ -23,7 +23,9 @@ import {
   EventHandlerRegistryService,
   UserCreatedHandler,
   ProductReservedHandler,
-  EventBusPort
+  EVENT_BUS_TOKEN,
+  NOTIFICATION_TOKEN,
+  LOGGING_TOKEN
 } from '@mef-frontend-arquetipo/application';
 
 // Infrastructure Layer - Adapters
@@ -32,12 +34,6 @@ import {
   ConsoleNotificationAdapter,
   ConsoleLoggingAdapter
 } from '@mef-frontend-arquetipo/adapters';
-
-// Application Layer - Ports (for DI)
-import {
-  NotificationPort,
-  LoggingPort
-} from '@mef-frontend-arquetipo/application';
 
 import { routes } from './app.routes';
 
@@ -87,9 +83,9 @@ export const appConfig: ApplicationConfig = {
     FormStateService,
 
     // 🔧 INFRASTRUCTURE LAYER - Adapters
-    { provide: EventBusPort, useClass: RxjsEventBusAdapter },
-    { provide: NotificationPort, useClass: ConsoleNotificationAdapter },
-    { provide: LoggingPort, useClass: ConsoleLoggingAdapter },
+    { provide: EVENT_BUS_TOKEN, useClass: RxjsEventBusAdapter },
+    { provide: NOTIFICATION_TOKEN, useClass: ConsoleNotificationAdapter },
+    { provide: LOGGING_TOKEN, useClass: ConsoleLoggingAdapter },
 
     // 📡 APPLICATION LAYER - Event Handlers
     EventHandlerRegistryService,

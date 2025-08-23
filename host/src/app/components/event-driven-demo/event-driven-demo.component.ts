@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EventBusPort, UserCreatedEvent, ProductReservedEvent, EventHandlerRegistryService } from '@mef-frontend-arquetipo/application';
+import { EVENT_BUS_TOKEN, UserCreatedEvent, ProductReservedEvent, EventHandlerRegistryService } from '@mef-frontend-arquetipo/application';
 
 @Component({
   selector: 'app-event-driven-demo',
@@ -135,7 +135,7 @@ import { EventBusPort, UserCreatedEvent, ProductReservedEvent, EventHandlerRegis
   `
 })
 export class EventDrivenDemoComponent implements OnInit, OnDestroy {
-  private eventBus = inject(EventBusPort);
+  private eventBus = inject(EVENT_BUS_TOKEN);
   private handlerRegistry = inject(EventHandlerRegistryService);
 
   eventLog: Array<{

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TailwindDashboardComponent } from '../tailwind-dashboard/tailwind-dashboard.component';
 import { EventDrivenDemoComponent } from '../event-driven-demo/event-driven-demo.component';
+import { AdvancedFormDemoComponent } from '../advanced-form-demo/advanced-form-demo.component';
 
 @Component({
   selector: 'app-enhanced-dashboard',
   standalone: true,
-  imports: [CommonModule, TailwindDashboardComponent, EventDrivenDemoComponent],
+  imports: [CommonModule, EventDrivenDemoComponent, AdvancedFormDemoComponent],
   template: `
     <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900">
       
@@ -18,7 +18,7 @@ import { EventDrivenDemoComponent } from '../event-driven-demo/event-driven-demo
             🎯 MEF Frontend Arquetipo
           </h1>
           <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto text-balance animate-fade-in animation-delay-150">
-            DDD + Hexagonal + Event-Driven + Angular 18 + TanStack Query + Tailwind CSS
+            DDD + Hexagonal + Event-Driven + Angular 18 + TanStack Query + MSW + Advanced Validations
           </p>
           <div class="flex flex-wrap justify-center gap-2 mt-6 animate-fade-in animation-delay-300">
             <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
@@ -32,6 +32,12 @@ import { EventDrivenDemoComponent } from '../event-driven-demo/event-driven-demo
             </span>
             <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-200 rounded-full text-sm font-medium">
               Event Handlers
+            </span>
+            <span class="px-3 py-1 bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-200 rounded-full text-sm font-medium">
+              MSW Mocking
+            </span>
+            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-200 rounded-full text-sm font-medium">
+              Advanced Validations
             </span>
           </div>
         </div>
@@ -53,6 +59,20 @@ import { EventDrivenDemoComponent } from '../event-driven-demo/event-driven-demo
           <app-event-driven-demo></app-event-driven-demo>
         </section>
 
+        <!-- Advanced Form Validation Section -->
+        <section class="mb-16">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              📝 Sistema de Validaciones Avanzadas
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Validaciones personalizadas para documentos peruanos, campos del MEF y validaciones síncronas/asíncronas
+            </p>
+          </div>
+          
+          <app-advanced-form-demo></app-advanced-form-demo>
+        </section>
+
         <!-- Architecture Info -->
         <section class="mb-16">
           <div class="text-center mb-8">
@@ -64,7 +84,7 @@ import { EventDrivenDemoComponent } from '../event-driven-demo/event-driven-demo
             </p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- DDD Card -->
             <div class="card-hover animate-slide-up">
               <div class="flex items-center mb-4">
@@ -113,19 +133,19 @@ import { EventDrivenDemoComponent } from '../event-driven-demo/event-driven-demo
               </ul>
             </div>
 
-            <!-- Tech Stack -->
+            <!-- MSW + Validations -->
             <div class="card-hover animate-slide-up animation-delay-300">
               <div class="flex items-center mb-4">
                 <div class="w-10 h-10 bg-orange-100 dark:bg-orange-900/50 rounded-lg flex items-center justify-center mr-3">
                   🛠️
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tech Stack</h3>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">MSW + Validations</h3>
               </div>
               <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2">
-                <li>✅ Angular 18 + Signals</li>
-                <li>✅ TanStack Query</li>
-                <li>✅ Tailwind CSS v3</li>
-                <li>✅ Native Federation</li>
+                <li>✅ Mock Service Worker</li>
+                <li>✅ API Mocking Completo</li>
+                <li>✅ Validaciones Peruanas</li>
+                <li>✅ Validaciones MEF</li>
               </ul>
             </div>
           </div>
@@ -202,10 +222,10 @@ import { EventDrivenDemoComponent } from '../event-driven-demo/event-driven-demo
       <footer class="bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border-t border-gray-200/50 dark:border-gray-700/50 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p class="text-gray-600 dark:text-gray-300">
-            🚀 MEF Frontend Arquetipo - Implementación completa de DDD + Hexagonal + Event-Driven Architecture
+            🚀 MEF Frontend Arquetipo - Implementación completa de DDD + Hexagonal + Event-Driven + MSW + Advanced Validations
           </p>
           <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-            Angular 18 LTS • TypeScript 5.3 • Tailwind CSS • TanStack Query • RxJS
+            Angular 18 LTS • TypeScript 5.3 • Tailwind CSS • TanStack Query • MSW • RxJS
           </p>
         </div>
       </footer>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { User, Product } from '@mef-frontend-arquetipo/domain';
-import { NotificationPort } from '@mef-frontend-arquetipo/application';
+import { NotificationPort, NotificationData } from '@mef-frontend-arquetipo/application';
 import { HttpClientService } from '../http/http-client.service';
 
 /**
@@ -31,6 +31,7 @@ export class EmailNotificationAdapter implements NotificationPort {
     const emailPayload: EmailPayload = {
       to: user.getEmail().getValue(),
       subject: 'Welcome to MEF Platform!',
+      body: `Welcome ${user.getName()}! Your account has been created successfully.`,
       template: 'welcome',
       templateData: {
         userName: user.getName(),
@@ -54,6 +55,7 @@ export class EmailNotificationAdapter implements NotificationPort {
     const emailPayload: EmailPayload = {
       to: user.getEmail().getValue(),
       subject: `${product.getName()} is now available!`,
+      body: `Dear ${user.getName()}, ${product.getName()} is now available for purchase at ${product.getPrice().toFormattedString()}.`,
       template: 'product-available',
       templateData: {
         userName: user.getName(),
@@ -81,6 +83,7 @@ export class EmailNotificationAdapter implements NotificationPort {
     const emailPayload: EmailPayload = {
       to: user.getEmail().getValue(),
       subject: `Reservation Confirmed: ${product.getName()}`,
+      body: `Dear ${user.getName()}, your reservation for ${quantity} units of ${product.getName()} has been confirmed. Total: ${totalPrice.toFormattedString()}.`,
       template: 'reservation-confirmation',
       templateData: {
         userName: user.getName(),
@@ -109,6 +112,7 @@ export class EmailNotificationAdapter implements NotificationPort {
     const emailPayload: EmailPayload = {
       to: 'admin@mef-platform.com', // Lista de administradores
       subject: `LOW STOCK ALERT: ${product.getName()}`,
+      body: `ALERT: ${product.getName()} has low stock. Current: ${currentStock}, Threshold: ${threshold}. Price: ${product.getPrice().toFormattedString()}`,
       template: 'low-stock-alert',
       templateData: {
         productName: product.getName(),
@@ -133,7 +137,28 @@ export class EmailNotificationAdapter implements NotificationPort {
     }
   }
 
-  async send(recipient: string, subject: string, message: string, type: 'email' | 'sms' | 'push'): Promise<void> {
+  async send(notification: NotificationData): Promise<void> {
+    if (notification.type !== 'email') {
+      throw new Error(`Email adapter does not support ${notification.type} notifications`);
+    }
+
+    const emailPayload: EmailPayload = {
+      to: notification.recipient,
+      subject: notification.subject,
+      body: notification.content
+    };
+
+    try {
+      await firstValueFrom(
+        this.httpClient.post(`${this.NOTIFICATIONS_ENDPOINT}/email`, emailPayload)
+      );
+    } catch (error) {
+      console.error('Failed to send notification:', error);
+      throw new Error(`Failed to send notification to ${notification.recipient}`);
+    }
+  }
+
+  async sendSimple(recipient: string, subject: string, message: string, type: 'email' | 'sms' | 'push'): Promise<void> {
     if (type !== 'email') {
       throw new Error(`Email adapter does not support ${type} notifications`);
     }
