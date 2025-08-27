@@ -24,6 +24,7 @@ export class SimpleQueryService {
       id: '1',
       name: 'John Doe',
       email: 'john@example.com',
+      status: 'ACTIVE',
       createdAt: '2025-01-01T00:00:00Z',
       updatedAt: '2025-01-01T00:00:00Z',
       isActive: true
@@ -32,9 +33,10 @@ export class SimpleQueryService {
       id: '2',
       name: 'Jane Smith',
       email: 'jane@example.com',
+      status: 'PENDING',
       createdAt: '2025-01-02T00:00:00Z',
       updatedAt: '2025-01-02T00:00:00Z',
-      isActive: true
+      isActive: false
     }
   ];
 
@@ -125,9 +127,10 @@ export class SimpleQueryService {
             id: (this.mockUsers.length + 1).toString(),
             name: command.name,
             email: command.email,
+            status: 'PENDING',
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
-            isActive: true
+            isActive: false
           };
           
           this.mockUsers.push(newUser);

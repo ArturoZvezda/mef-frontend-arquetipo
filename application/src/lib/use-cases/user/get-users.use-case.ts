@@ -65,6 +65,7 @@ export class GetUsersUseCase {
       id: user.getId().getValue(),
       email: user.getEmail().getValue(),
       name: user.getName(),
+      status: user.getStatus(),
       createdAt: user.getCreatedAt().toISOString(),
       updatedAt: user.getCreatedAt().toISOString(),
       isActive: user.isActive()

@@ -14,6 +14,7 @@ const mockUsers: MockUser[] = [
     id: 'user-001',
     name: 'María González',
     email: 'maria.gonzalez@mef.gob.pe',
+    status: 'ACTIVE',
     role: 'admin',
     createdAt: '2024-01-15T00:00:00.000Z',
     updatedAt: '2024-01-15T00:00:00.000Z',
@@ -23,6 +24,7 @@ const mockUsers: MockUser[] = [
     id: 'user-002', 
     name: 'Carlos Mendoza',
     email: 'carlos.mendoza@mef.gob.pe',
+    status: 'ACTIVE',
     role: 'user',
     createdAt: '2024-02-01T00:00:00.000Z',
     updatedAt: '2024-02-01T00:00:00.000Z',
@@ -31,7 +33,8 @@ const mockUsers: MockUser[] = [
   {
     id: 'user-003',
     name: 'Ana Rojas',
-    email: 'ana.rojas@mef.gob.pe', 
+    email: 'ana.rojas@mef.gob.pe',
+    status: 'PENDING',
     role: 'viewer',
     createdAt: '2024-02-10T00:00:00.000Z',
     updatedAt: '2024-02-10T00:00:00.000Z',
@@ -41,6 +44,7 @@ const mockUsers: MockUser[] = [
     id: 'user-004',
     name: 'Luis Fernández',
     email: 'luis.fernandez@mef.gob.pe',
+    status: 'ACTIVE',
     role: 'user',
     createdAt: '2024-02-15T00:00:00.000Z',
     updatedAt: '2024-02-15T00:00:00.000Z',
@@ -154,10 +158,11 @@ export const userHandlers = [
         id: `user-${Date.now()}`,
         name: newUserData.name,
         email: newUserData.email,
+        status: 'PENDING',
         role: (newUserData as any).role || 'user',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-        isActive: true
+        isActive: false
       };
 
       // Agregar a la "base de datos" mock

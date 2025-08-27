@@ -17,6 +17,7 @@ interface UserApiData {
   id: string;
   email: string;
   name: string;
+  status?: string;
   createdAt: string;
 }
 
@@ -217,6 +218,7 @@ export class HttpUserRepository implements UserRepositoryPort {
       UserId.fromString(userData.id),
       Email.fromString(userData.email),
       userData.name,
+      userData.status as any || 'PENDING',
       new Date(userData.createdAt)
     );
   }

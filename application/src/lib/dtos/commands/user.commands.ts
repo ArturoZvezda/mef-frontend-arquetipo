@@ -23,6 +23,15 @@ export interface DeleteUserCommand {
 }
 
 /**
+ * Command para activar un usuario
+ */
+export interface ActivateUserCommand {
+  userId: string;
+  activatedBy: string;
+  reason?: string;
+}
+
+/**
  * Query para obtener usuario por ID
  */
 export interface GetUserByIdQuery {

@@ -38,6 +38,18 @@ export interface ProductStockUpdatedEvent extends DomainEvent {
   };
 }
 
+export interface UserActivatedEvent extends DomainEvent {
+  type: 'USER_ACTIVATED';
+  payload: {
+    userId: string;
+    email: string;
+    name: string;
+    activatedBy: string;
+    activatedAt: Date;
+    reason?: string;
+  };
+}
+
 /**
  * Puerto para sistema de eventos de dominio
  * Permite publicar eventos y suscribirse a ellos

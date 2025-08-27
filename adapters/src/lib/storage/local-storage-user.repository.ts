@@ -10,6 +10,7 @@ interface UserStorageData {
   id: string;
   email: string;
   name: string;
+  status?: string;
   createdAt: string;
 }
 
@@ -124,6 +125,7 @@ export class LocalStorageUserRepository implements UserRepositoryPort {
       UserId.fromString(userData.id),
       Email.fromString(userData.email),
       userData.name,
+      userData.status as any || 'PENDING',
       new Date(userData.createdAt)
     );
   }

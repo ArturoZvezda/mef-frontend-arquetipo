@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { EventHandler } from '../handlers/event-handler.interface';
 import { UserCreatedHandler } from '../handlers/user-created.handler';
+import { UserActivatedHandler } from '../handlers/user-activated.handler';
 import { ProductReservedHandler } from '../handlers/product-reserved.handler';
 import { EVENT_BUS_TOKEN, LOGGING_TOKEN } from '../tokens/injection-tokens';
 import { DomainEvent } from '../ports/event-bus.port';
@@ -20,6 +21,7 @@ export class EventHandlerRegistryService {
 
   constructor(
     private userCreatedHandler: UserCreatedHandler,
+    private userActivatedHandler: UserActivatedHandler,
     private productReservedHandler: ProductReservedHandler
   ) {
     this.initializeHandlers();
@@ -31,6 +33,7 @@ export class EventHandlerRegistryService {
   private initializeHandlers(): void {
     this.handlers = [
       this.userCreatedHandler,
+      this.userActivatedHandler,
       this.productReservedHandler
     ];
 

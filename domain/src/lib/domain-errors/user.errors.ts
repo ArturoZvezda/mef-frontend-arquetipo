@@ -23,3 +23,19 @@ export class InvalidUserDataError extends DomainError {
     super(`Invalid user data: ${message}`);
   }
 }
+
+export class UserAlreadyActiveError extends DomainError {
+  readonly code = 'USER_ALREADY_ACTIVE';
+  
+  constructor(userId: string) {
+    super(`User with id ${userId} is already active`);
+  }
+}
+
+export class UserSuspendedError extends DomainError {
+  readonly code = 'USER_SUSPENDED';
+  
+  constructor(userId: string) {
+    super(`User with id ${userId} is suspended and cannot be activated`);
+  }
+}
