@@ -13,6 +13,24 @@ export const routes: Routes = [
     title: 'Dashboard - MEF Frontend Arquetipo'
   },
   {
+    path: 'event-driven-demo',
+    loadComponent: () => 
+      import('./components/event-driven-demo/event-driven-demo.component').then(c => c.EventDrivenDemoComponent),
+    title: 'Event-Driven Demo - MEF Frontend Arquetipo'
+  },
+  {
+    path: 'user-management-demo',
+    loadComponent: () => 
+      import('./components/user-management-demo/user-management-demo.component').then(c => c.UserManagementDemoComponent),
+    title: 'User Management Demo - MEF Frontend Arquetipo'
+  },
+  {
+    path: 'enhanced-dashboard',
+    loadComponent: () => 
+      import('./components/enhanced-dashboard/enhanced-dashboard.component').then(c => c.EnhancedDashboardComponent),
+    title: 'Enhanced Dashboard - MEF Frontend Arquetipo'
+  },
+  {
     path: '**',
     loadComponent: () => 
       import('./components/not-found/not-found.component').then(c => c.NotFoundComponent),

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tailwind-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   template: `
     <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900">
       <!-- Header -->
@@ -195,10 +196,117 @@ import { CommonModule } from '@angular/common';
           </div>
         </section>
 
+        <!-- DDD + Event-Driven Demos Navigation -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            🎯 Demos DDD + Event-Driven Design
+          </h2>
+          <p class="text-center text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+            Explora ejemplos completos de implementación de Domain-Driven Design con Event-Driven Architecture
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- User Management Demo -->
+            <a routerLink="/user-management-demo" 
+               class="card-hover group cursor-pointer animate-slide-up">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-xl flex items-center justify-center mr-4">
+                  👥
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    Gestión de Usuarios
+                  </h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">
+                    Caso de uso completo
+                  </p>
+                </div>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                Demo completo del caso de uso "Activar Usuario" implementado paso a paso con DDD + Event-Driven Design.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded text-xs">
+                  Use Cases
+                </span>
+                <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-200 rounded text-xs">
+                  Domain Events
+                </span>
+                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 rounded text-xs">
+                  Event Handlers
+                </span>
+              </div>
+            </a>
+
+            <!-- Event-Driven Demo -->
+            <a routerLink="/event-driven-demo" 
+               class="card-hover group cursor-pointer animate-slide-up animation-delay-150">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/50 rounded-xl flex items-center justify-center mr-4">
+                  📡
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    Event-Driven Demo
+                  </h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">
+                    Sistema de eventos
+                  </p>
+                </div>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                Visualiza el sistema de eventos de dominio en tiempo real con RxJS Event Bus y Event Handlers.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-200 rounded text-xs">
+                  RxJS Event Bus
+                </span>
+                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded text-xs">
+                  Real-time
+                </span>
+                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 rounded text-xs">
+                  Handlers Registry
+                </span>
+              </div>
+            </a>
+
+            <!-- Enhanced Dashboard -->
+            <a routerLink="/enhanced-dashboard" 
+               class="card-hover group cursor-pointer animate-slide-up animation-delay-300">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-green-100 dark:bg-green-900/50 rounded-xl flex items-center justify-center mr-4">
+                  📊
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                    Enhanced Dashboard
+                  </h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">
+                    Dashboard avanzado
+                  </p>
+                </div>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                Dashboard con múltiples funcionalidades, TanStack Query, signals y formularios reactivos.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 rounded text-xs">
+                  TanStack Query
+                </span>
+                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded text-xs">
+                  Angular Signals
+                </span>
+                <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-200 rounded text-xs">
+                  Reactive Forms
+                </span>
+              </div>
+            </a>
+          </div>
+        </section>
+
         <!-- Interactive Demo Section -->
         <section class="mb-16">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            🎮 Demo Interactivo
+            🎮 Demo Interactivo Local
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <button 
