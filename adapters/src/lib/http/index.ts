@@ -3,3 +3,4 @@ export * from './http-user.repository';
 export * from './http-product.repository';
 export * from './http-client.service';
 export * from './msw-http-client.service';
+export * from './mef-backend-client.service';

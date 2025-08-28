@@ -204,7 +204,7 @@ import { RouterLink } from '@angular/router';
           <p class="text-center text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
             Explora ejemplos completos de implementación de Domain-Driven Design con Event-Driven Architecture
           </p>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <!-- User Management Demo -->
             <a routerLink="/user-management-demo" 
                class="card-hover group cursor-pointer animate-slide-up">
@@ -297,6 +297,38 @@ import { RouterLink } from '@angular/router';
                 </span>
                 <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-200 rounded text-xs">
                   Reactive Forms
+                </span>
+              </div>
+            </a>
+
+            <!-- MEF Integration Demo -->
+            <a routerLink="/mef-integration-demo" 
+               class="card-hover group cursor-pointer animate-slide-up animation-delay-450">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/50 rounded-xl flex items-center justify-center mr-4">
+                  🔌
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                    MEF Integration
+                  </h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">
+                    Backend integration
+                  </p>
+                </div>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                Demo de integración con el backend MEF mostrando conexión HTTP, carga de usuarios y creación de datos.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-200 rounded text-xs">
+                  HTTP Client
+                </span>
+                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded text-xs">
+                  Backend API
+                </span>
+                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 rounded text-xs">
+                  Real Backend
                 </span>
               </div>
             </a>

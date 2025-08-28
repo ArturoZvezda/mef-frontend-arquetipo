@@ -31,6 +31,12 @@ export const routes: Routes = [
     title: 'Enhanced Dashboard - MEF Frontend Arquetipo'
   },
   {
+    path: 'mef-integration-demo',
+    loadComponent: () => 
+      import('./components/mef-integration-demo/mef-integration-demo.component').then(c => c.MefIntegrationDemoComponent),
+    title: 'MEF Backend Integration Demo'
+  },
+  {
     path: '**',
     loadComponent: () => 
       import('./components/not-found/not-found.component').then(c => c.NotFoundComponent),

@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/C:\\dev\\mef\\arquetipo-back/**)",
+      "Read(/C:\\dev\\mef\\arquetipo-back\\src\\main\\java\\pe\\gob\\mef\\siafrppiloto\\arquetipo\\port\\inbound\\api\\controllers/**)",
+      "Read(/C:\\dev\\mef\\arquetipo-back\\src\\main\\java\\pe\\gob\\mef\\siafrppiloto\\arquetipo\\port\\inbound\\dto\\usuario/**)",
+      "Read(/C:\\dev\\mef\\arquetipo-back\\src\\main\\resources/**)",
+      "Read(/C:\\dev\\mef\\arquetipo-back\\src\\main\\java\\pe\\gob\\mef\\siafrppiloto\\arquetipo\\port\\inbound\\mapper/**)",
+      "Read(/C:\\dev\\mef\\arquetipo-back\\src\\main\\java\\pe\\gob\\mef\\siafrppiloto\\arquetipo\\port\\inbound\\dto\\usuario/**)",
+      "Bash(./gradlew:*)",
+      "Bash(taskkill:*)",
+      "Bash(curl:*)"
+    ],
+    "deny": [],
+    "ask": [],
+    "additionalDirectories": [
+      "C:\\dev\\mef\\arquetipo-back"
+    ]
+  }
+}
