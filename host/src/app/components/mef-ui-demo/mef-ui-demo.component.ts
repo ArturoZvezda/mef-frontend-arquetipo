@@ -4,7 +4,8 @@ import {
   MefAlertWrapperComponent,
   MefButtonWrapperComponent,
   MefTextFieldRemoteComponent,
-  MefMenuRemoteComponent
+  MefMenuRemoteComponent,
+  MefListRemoteComponent
 } from '@mef-frontend-arquetipo/ui';
 
 /**
@@ -21,6 +22,7 @@ import {
     MefButtonWrapperComponent,
     MefAlertWrapperComponent,
     MefTextFieldRemoteComponent,
+    MefListRemoteComponent,
     MefMenuRemoteComponent
   ],
   template: `
@@ -182,6 +184,14 @@ import {
           [trailing]="'none'"
           [size]="'standard'"
         ></mef-menu>
+        </div>
+      </section>
+
+      <section class="demo-section">
+        <h2>📝 List</h2>
+        <div class="p-2 w-[268px]">
+          <mef-list type="two-line" size="standard" leadingType="switch" trailingType="icon" title="Hola" text="Mundo">
+          </mef-list>
         </div>
       </section>
 
@@ -544,4 +554,13 @@ export class MefUiDemoComponent {
   onItemChangeCheck(ev: any) {
     console.log('Checkbox changed:', ev);
   }
+
+  onDateChange(event: any) {
+    console.log('selected:', event);
+  }
+
+  onCancelled(event: any) {
+    console.log('selection cancelled:', event);
+  }
+
 }
