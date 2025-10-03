@@ -32,13 +32,19 @@ export const routes: Routes = [
   },
   {
     path: 'mef-integration-demo',
-    loadComponent: () => 
+    loadComponent: () =>
       import('./components/mef-integration-demo/mef-integration-demo.component').then(c => c.MefIntegrationDemoComponent),
     title: 'MEF Backend Integration Demo'
   },
   {
+    path: 'mef-ui-demo',
+    loadComponent: () =>
+      import('./components/mef-ui-demo/mef-ui-demo.component').then(c => c.MefUiDemoComponent),
+    title: 'MEF UI Design System Demo'
+  },
+  {
     path: '**',
-    loadComponent: () => 
+    loadComponent: () =>
       import('./components/not-found/not-found.component').then(c => c.NotFoundComponent),
     title: '404 - Not Found'
   }
