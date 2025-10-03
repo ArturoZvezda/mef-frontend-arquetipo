@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import {
   MefAlertWrapperComponent,
   MefButtonWrapperComponent,
-  MefTextFieldWrapperComponent,
+  MefTextFieldRemoteComponent,
+  MefMenuRemoteComponent
 } from '@mef-frontend-arquetipo/ui';
 
 /**
@@ -19,7 +20,8 @@ import {
     CommonModule,
     MefButtonWrapperComponent,
     MefAlertWrapperComponent,
-    MefTextFieldWrapperComponent,
+    MefTextFieldRemoteComponent,
+    MefMenuRemoteComponent
   ],
   template: `
     <div class="mef-ui-demo-container">
@@ -150,56 +152,36 @@ import {
 
       <!-- Text Field Components Section -->
       <section class="demo-section">
-        <h2>📝 Text Fields</h2>
+        <h2>📝 Menu Items</h2>
         <p class="section-description">
-          Input field components with validation
+          Menu components
         </p>
 
-        <div class="form-grid">
-          <div class="form-field-demo">
-            <h3>Standard Text Field</h3>
-            <mef-text-field-wrapper
-              label="Name"
-              placeholder="Enter your name"
-              (valueChange)="handleTextChange('name', $event)"
-            >
-            </mef-text-field-wrapper>
-          </div>
-
-          <div class="form-field-demo">
-            <h3>Email Field</h3>
-            <mef-text-field-wrapper
-              label="Email"
-              placeholder="user@example.com"
-              type="email"
-              [required]="true"
-              (valueChange)="handleTextChange('email', $event)"
-            >
-            </mef-text-field-wrapper>
-          </div>
-
-          <div class="form-field-demo">
-            <h3>Password Field</h3>
-            <mef-text-field-wrapper
-              label="Password"
-              placeholder="Enter password"
-              type="password"
-              [required]="true"
-              (valueChange)="handleTextChange('password', $event)"
-            >
-            </mef-text-field-wrapper>
-          </div>
-
-          <div class="form-field-demo">
-            <h3>Disabled Field</h3>
-            <mef-text-field-wrapper
-              label="Disabled"
-              placeholder="This field is disabled"
-              [disabled]="true"
-              value="Cannot edit"
-            >
-            </mef-text-field-wrapper>
-          </div>
+        <div class="p-2 w-[280px]">
+          <mef-menu
+            [items]="items"
+            [leading]="'radio-button'"
+            [density]="'compact'"
+            (itemChange)="onItemChange($event)">
+          </mef-menu>
+        </div>
+         <div class="p-2 w-[280px]">
+         <mef-menu
+          [items]="items3"
+          leading="none"
+          [density]="'compact'"
+          [trailing]="'icon'"
+          [size]="'standard'">
+        </mef-menu>
+        </div>
+         <div class="p-2 w-[280px]">
+          <mef-menu
+          [items]="items3"
+          leading="icon"
+          [density]="'compact'"
+          [trailing]="'none'"
+          [size]="'standard'"
+        ></mef-menu>
         </div>
       </section>
 
@@ -533,5 +515,33 @@ export class MefUiDemoComponent {
 
   clearLog() {
     this.eventLog = [];
+  }
+
+  items: Array<{ id: number; text: string }> = [
+    { id: 1, text: 'Cuenta' },
+    { id: 2, text: 'Notificaciones' },
+    { id: 3, text: 'Tema oscuro' },
+    { id: 4, text: 'Rol usuario' },
+    { id: 5, text: 'Rol admin' },
+  ];
+
+  items2: Array<{ id: number; text: string; type: string }> = [
+    { id: 1, text: 'Correo', type: 'selected' },
+    { id: 2, text: 'SMS', type: 'deselected' },
+    { id: 3, text: 'Push', type: 'indeterminate' },
+  ];
+
+  items3: Array<{ id: number; text: string }> = [
+    { id: 1, text: 'Item 1' },
+    { id: 2, text: 'Item 2' },
+    { id: 3, text: 'Item 3' },
+  ];
+
+  onItemChange(event: any) {
+    console.log('Item changed:', event);
+  }
+
+  onItemChangeCheck(ev: any) {
+    console.log('Checkbox changed:', ev);
   }
 }
